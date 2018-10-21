@@ -6,6 +6,8 @@ import qualified Data.ByteString.Char8 as S8
 import qualified Data.Yaml             as Yaml
 import           Network.HTTP.Simple
 
+import Types (Person(..), Flight(..))
+
 
 main :: IO ()
 main = do
@@ -28,16 +30,6 @@ rushi = do
   case result of
     Error str -> pure Nothing
     Success a -> pure a
-
-data Person =
-  Person
-  { email :: String
-  , aadvantageId :: String
-  , id :: String
-  , lastName :: String
-  , gender :: String
-  , firstName :: String
-  } deriving (Show, Eq)
 
 instance ToJSON Person where
     -- this generates a Value

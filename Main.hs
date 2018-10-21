@@ -6,7 +6,8 @@ import qualified Data.ByteString.Char8 as S8
 import qualified Data.Yaml             as Yaml
 import           Network.HTTP.Simple
 
-import Types (Person(..), Flight(..))
+import Types (Person(..), Flight(..), exampleFlight, exampleFlight2)
+import Layover (determineLayover)
 
 
 main :: IO ()
@@ -18,6 +19,9 @@ main = do
     print $ getResponseHeader "Content-Type" response
     S8.putStrLn $ Yaml.encode (getResponseBody response :: Value)
     putStrLn ("DECODED")
+    -- print $ exampleFlight
+    -- print $ exampleFlight2
+    print $ determineLayover exampleFlight exampleFlight2 "Madalyn"
     myPerson <- rushi
     case myPerson of
       Nothing -> putStrLn $ "Could not parse"
